@@ -13,4 +13,5 @@ add_executable(cs210_stack_queue_lab
         Data.h
         Stack.h
         StackList.h
-        Queue.h)
+        Queue.h
+        Player.h)
