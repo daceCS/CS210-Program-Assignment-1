@@ -15,3 +15,6 @@ add_executable(cs210_stack_queue_lab
         StackList.h
         Queue.h
         Player.h)
+
+# Throwaway target for the mismatched-concat test. Has its own main().
+add_executable(test_mismatch testmismatch.cpp)
