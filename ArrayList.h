@@ -40,6 +40,23 @@ public:
         --size_;
     }
 
+    void addAnywhere(int position, T* value) override {
+        if (position < 0 || position > size_) {
+            std::cout << "addAnywhere: invalid position " << position << std::endl;
+            return;
+        }
+        if (size_ >= CAPACITY) {
+            std::cout << "ArrayList is full." << std::endl;
+            return;
+        }
+        // Shift right, starting from the END so nothing is overwritten.
+        for (int i = size_; i > position; --i) {
+            data_[i] = data_[i - 1];
+        }
+        data_[position] = value;
+        ++size_;
+    }
+
     T* getFront() const override {
         if (size_ == 0) {
             return nullptr;

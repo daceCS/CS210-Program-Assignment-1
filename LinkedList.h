@@ -47,6 +47,30 @@ public:
         --size_;
     }
 
+    void addAnywhere(int position, T* value) override {
+        if (position < 0 || position > size_) {
+            std::cout << "addAnywhere: invalid position " << position << std::endl;
+            return;
+        }
+        if (position == 0) {
+            addFront(value);
+            return;
+        }
+        if (position == size_) {
+            addBack(value);
+            return;
+        }
+        // Middle insert: walk to the node BEFORE the insertion spot.
+        Node<T>* prev = head_;
+        for (int i = 0; i < position - 1; ++i) {
+            prev = prev->next;
+        }
+        Node<T>* fresh = new Node<T>(value);
+        fresh->next = prev->next;   // link the rest of the list first
+        prev->next = fresh;
+        ++size_;
+    }
+
     T* getFront() const override {
         if (head_ == nullptr) {
             return nullptr;

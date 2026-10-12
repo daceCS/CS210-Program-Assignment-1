@@ -17,6 +17,9 @@ public:
     virtual T* getFront() const = 0;       // look at the first item, nullptr if empty
     virtual bool isEmpty() const = 0;
     virtual int size() const = 0;
+
+    // Added for the Uno assignment.
+    virtual void addAnywhere(int position, T* value) = 0;
 };
 
 #include "ArrayList.h"
