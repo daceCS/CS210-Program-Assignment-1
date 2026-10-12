@@ -107,6 +107,28 @@ public:
         head_ = prev;
     }
 
+    void concat(List<T>* other) override {
+        LinkedList<T>* o = dynamic_cast<LinkedList<T>*>(other);
+        if (o == nullptr) {
+            std::cout << "concat: representations don't match, nothing done." << std::endl;
+            return;
+        }
+        if (o->head_ == nullptr) {
+            return;                 // nothing to attach
+        }
+        if (head_ == nullptr) {
+            head_ = o->head_;
+        } else {
+            tail_->next = o->head_;
+        }
+        tail_ = o->tail_;
+        size_ += o->size_;
+
+        o->head_ = nullptr;         // ownership moved; other is now empty
+        o->tail_ = nullptr;
+        o->size_ = 0;
+    }
+
     T* getFront() const override {
         if (head_ == nullptr) {
             return nullptr;

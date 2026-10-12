@@ -82,6 +82,23 @@ public:
         }
     }
 
+    void concat(List<T>* other) override {
+        ArrayList<T>* o = dynamic_cast<ArrayList<T>*>(other);
+        if (o == nullptr) {
+            std::cout << "concat: representations don't match, nothing done." << std::endl;
+            return;
+        }
+        if (size_ + o->size_ > CAPACITY) {
+            std::cout << "concat: not enough capacity, nothing done." << std::endl;
+            return;
+        }
+        for (int i = 0; i < o->size_; ++i) {
+            data_[size_ + i] = o->data_[i];
+        }
+        size_ += o->size_;
+        o->size_ = 0;               // ownership moved; other is now empty
+    }
+
     T* getFront() const override {
         if (size_ == 0) {
             return nullptr;
