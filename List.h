@@ -21,6 +21,7 @@ public:
     // Added for the Uno assignment.
     virtual void addAnywhere(int position, T* value) = 0;
     virtual void deleteAnywhere(int position) = 0;
+    virtual void reverse() = 0;
 };
 
 #include "ArrayList.h"

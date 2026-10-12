@@ -94,6 +94,19 @@ public:
         --size_;
     }
 
+    void reverse() override {
+        tail_ = head_;              // the old head becomes the new tail
+        Node<T>* prev = nullptr;
+        Node<T>* curr = head_;
+        while (curr != nullptr) {
+            Node<T>* next = curr->next;   // save before overwriting
+            curr->next = prev;            // point back
+            prev = curr;                  // advance
+            curr = next;
+        }
+        head_ = prev;
+    }
+
     T* getFront() const override {
         if (head_ == nullptr) {
             return nullptr;
