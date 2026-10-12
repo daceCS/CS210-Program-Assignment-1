@@ -18,3 +18,6 @@ add_executable(cs210_stack_queue_lab
 
 # Throwaway target for the mismatched-concat test. Has its own main().
 add_executable(test_mismatch testmismatch.cpp)
+
+target_compile_options(cs210_stack_queue_lab PRIVATE -Wall -Wextra)
+target_compile_options(test_mismatch PRIVATE -Wall -Wextra)
