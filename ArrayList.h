@@ -57,6 +57,19 @@ public:
         ++size_;
     }
 
+    void deleteAnywhere(int position) override {
+        if (position < 0 || position >= size_) {
+            std::cout << "deleteAnywhere: invalid position " << position << std::endl;
+            return;
+        }
+        delete data_[position];
+        // Shift left to close the gap.
+        for (int i = position; i < size_ - 1; ++i) {
+            data_[i] = data_[i + 1];
+        }
+        --size_;
+    }
+
     T* getFront() const override {
         if (size_ == 0) {
             return nullptr;
